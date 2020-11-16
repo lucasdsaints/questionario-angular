@@ -1,0 +1,30 @@
+h1 {
+  margin-bottom: 0em;
+}
+
+.term-details {
+  max-width: 400px;
+  max-height: 200px;
+  overflow: auto;
+  
+  p {
+    margin: .5em;
+    font-weight: 500;
+    text-align: justify;
+  }
+}
+
+.dashed-line {
+  display: block;
+  flex: 1;
+  border: 2px dashed #ddd;
+}
+
+line {
+  stroke:#ddd;
+  stroke-width: 2
+}
+
+.checkbox {
+  margin: 1em 0;
+}

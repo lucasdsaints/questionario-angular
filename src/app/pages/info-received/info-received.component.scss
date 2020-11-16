@@ -1,0 +1,29 @@
+.container {
+  height: 100%;
+}
+
+img {
+  max-height: 100px;
+  margin-bottom: 1em;
+}
+
+span {
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #c8bb90;
+  margin-bottom: 1em;
+}
+
+p {
+  max-width: 600px;
+  text-align: center;
+}
+
+.space-top {
+  margin-top: 2em;
+}
+
+button {
+  margin: .2em;
+}

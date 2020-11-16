@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto,
+  "Helvetica Neue",
+  sans-serif;
+  color: #838381;
+  font-size: 14px;
+}
+
+.mat-flat-button,
+.mat-stroked-button {
+  padding: .2em 4em !important;
+  text-transform: uppercase;
+}
+
+.mat-flat-button[color="accent"] {
+  color: #fff !important;
+  background-color: #fabd0f;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
