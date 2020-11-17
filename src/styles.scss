@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #673ab7;
+}
 
 html,
 body {
@@ -30,4 +37,21 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  &.full {
+    height: 100%;
+  }
+}
+
+.mat-radio-button {
+  .mat-radio-label-content {
+    max-width: 200px;
+    white-space: normal;
+    text-transform: uppercase;
+    font-size: .9em;
+  }
+
+  &.mat-radio-checked .mat-radio-label-content {
+    color: var(--primary-color);
+  }
 }

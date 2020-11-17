@@ -1,5 +1,16 @@
+.container {
+  position: relative;
+}
+
 h1 {
   margin-bottom: 0em;
+}
+
+.close-button {
+  position: absolute;
+  cursor: pointer;
+  right: -10px;
+  top: -10px;
 }
 
 .term-details {

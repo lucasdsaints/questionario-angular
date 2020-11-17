@@ -1,0 +1,100 @@
+<div class="container full">
+  <h1>Perfil do Investidor - Questionário</h1>
+
+  <form [formGroup]="dynamicForm">
+
+    <div
+      *ngFor="let question of dynamicQuestions; let i = index"
+      class="item-container"
+    >
+      <span class="question">
+        {{ i+1 }} - {{ question.question }}
+      </span>
+  
+      <mat-radio-group class="input" [formControlName]="question.field">
+        <mat-radio-button
+          *ngFor="let option of question.options; let i = index"
+          color="primary"
+          [value]="i"
+        >
+          {{ option }}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <svg width="800" height="4" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <line stroke-dasharray="10, 5" x1="0" y1="1" x2="800" y2="1" style="stroke-width: 2px;"></line>
+      </svg>
+    </div>
+  </form>
+
+  <form [formGroup]="investmentsTypesForm">
+    <div class="item-container">
+      <span class="question">
+        {{ dynamicQuestions.length + 1 }} - Qual sua familiaridade com os tipos de investimentos abaixo?<br>
+        Leve em consideração o valor aplicado nos últimos 2 anos.
+      </span>
+
+      <div class="fixed-inputs">
+        <mat-form-field appearance="standard">
+          <mat-label>Títulos de renda fixa ou tesouro direto</mat-label>
+          <mat-select formControlName="rendaFixaTesouroDireto" required>
+            <mat-option>--</mat-option>
+            <mat-option value="animal">
+              teste
+            </mat-option>
+          </mat-select>
+          <!-- <mat-error *ngIf="rendaFixaTesouroDireto.hasError('required')">Please choose an animal</mat-error> -->
+          <!-- <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
+        </mat-form-field>
+        
+        <mat-form-field appearance="standard">
+          <mat-label>Fundos de investimento</mat-label>
+          <mat-select formControlName="fundosInvestimentos" required>
+            <mat-option>--</mat-option>
+            <mat-option value="animal">
+              teste
+            </mat-option>
+          </mat-select>
+          <!-- <mat-error *ngIf="rendaFixaTesouroDireto.hasError('required')">Please choose an animal</mat-error> -->
+          <!-- <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
+        </mat-form-field>
+        
+        <mat-form-field appearance="standard">
+          <mat-label>Ações a vista</mat-label>
+          <mat-select formControlName="acoesAVista" required>
+            <mat-option>--</mat-option>
+            <mat-option value="animal">
+              teste
+            </mat-option>
+          </mat-select>
+          <!-- <mat-error *ngIf="rendaFixaTesouroDireto.hasError('required')">Please choose an animal</mat-error> -->
+          <!-- <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
+        </mat-form-field>
+        
+        <mat-form-field appearance="standard">
+          <mat-label>Aluguel de ações, Termos, Opções e futuros</mat-label>
+          <mat-select formControlName="aluguelAcoesTermosOpFuturos" required>
+            <mat-option>--</mat-option>
+            <mat-option value="animal">
+              teste
+            </mat-option>
+          </mat-select>
+          <!-- <mat-error *ngIf="rendaFixaTesouroDireto.hasError('required')">Please choose an animal</mat-error> -->
+          <!-- <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
+        </mat-form-field>
+      </div>
+        
+        <svg width="800" height="4" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <line stroke-dasharray="10, 5" x1="0" y1="1" x2="800" y2="1" style="stroke-width: 2px;"></line>
+        </svg>
+      </div>
+    </form>
+
+  <button
+  mat-stroked-button
+  color="primary"
+  (click)="showValues()"
+  >
+    Show Values
+  </button>
+</div>

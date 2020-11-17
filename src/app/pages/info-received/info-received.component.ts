@@ -16,7 +16,9 @@ export class InfoReceivedComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(DiAcceptanceTermComponent);
+    this.dialog.open(DiAcceptanceTermComponent, {
+      disableClose: true
+    });
   }
 
 }

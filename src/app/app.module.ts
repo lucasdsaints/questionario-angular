@@ -9,13 +9,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DiAcceptanceTermComponent } from './components/di-acceptance-term/di-acceptance-term.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { ProfileQuestionnaireComponent } from './pages/profile-questionnaire/profile-questionnaire.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
     AppComponent,
     InfoReceivedComponent,
-    DiAcceptanceTermComponent
+    DiAcceptanceTermComponent,
+    ProfileQuestionnaireComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,11 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     MatDialogModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    MatIconModule,
+    MatRadioModule,
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

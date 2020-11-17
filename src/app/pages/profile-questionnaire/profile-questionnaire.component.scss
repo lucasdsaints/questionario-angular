@@ -1,0 +1,50 @@
+h1 {
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: 2em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .item-container {
+    padding-bottom: 2em;
+  }
+}
+
+
+.item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  .question {
+    font-size: 1.3em;
+    margin-bottom: .8em;
+  }
+  
+  .input {
+    margin-bottom: 2em;
+    display: flex;
+    width: 800px;
+    justify-content: space-around;
+  }
+}
+
+.fixed-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  
+  > * {
+    flex: 1;
+    flex-basis: 50%;
+    padding: 0 1em;
+  }
+}
+
+line {
+  stroke:#ddd;
+  stroke-width: 2
+}

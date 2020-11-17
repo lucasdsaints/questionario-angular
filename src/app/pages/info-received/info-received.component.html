@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container full">
   <img src="assets/images/form.png" alt="Formulário preenchido">
   <span>Informações recebidas!</span>
   
@@ -17,6 +17,12 @@
     >
       Não
     </button>
-    <button mat-stroked-button color="primary">Sim</button>
+    <button
+      mat-stroked-button
+      color="primary"
+      [routerLink]="['/profile-questionnaire']" 
+    >
+      Sim
+    </button>
   </div>
 </div>
