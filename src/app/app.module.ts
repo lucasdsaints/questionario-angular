@@ -14,13 +14,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { ProfileQuestionnaireComponent } from './pages/profile-questionnaire/profile-questionnaire.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { HttpClientModule } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DiSuccessfulRegistrationComponent } from './components/di-successful-registration/di-successful-registration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InfoReceivedComponent,
     DiAcceptanceTermComponent,
-    ProfileQuestionnaireComponent
+    ProfileQuestionnaireComponent,
+    DiSuccessfulRegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

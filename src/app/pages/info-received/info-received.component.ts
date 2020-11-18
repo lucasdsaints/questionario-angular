@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Component } from '@angular/core';
 
 import { DiAcceptanceTermComponent } from 'src/app/components/di-acceptance-term/di-acceptance-term.component';
 
@@ -8,12 +8,9 @@ import { DiAcceptanceTermComponent } from 'src/app/components/di-acceptance-term
   templateUrl: './info-received.component.html',
   styleUrls: ['./info-received.component.scss']
 })
-export class InfoReceivedComponent implements OnInit {
+export class InfoReceivedComponent {
 
   constructor(private dialog: MatDialog) { }
-
-  ngOnInit(): void {
-  }
 
   openDialog() {
     this.dialog.open(DiAcceptanceTermComponent, {

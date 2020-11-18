@@ -1,8 +1,7 @@
-<div class="container full">
+<div class="container">
   <h1>Perfil do Investidor - Questionário</h1>
 
-  <form [formGroup]="dynamicForm">
-
+  <form [formGroup]="questionaireForm"  *ngIf="questionaireForm; else loadContainer">
     <div
       *ngFor="let question of dynamicQuestions; let i = index"
       class="item-container"
@@ -11,90 +10,95 @@
         {{ i+1 }} - {{ question.question }}
       </span>
   
-      <mat-radio-group class="input" [formControlName]="question.field">
+      <mat-radio-group class="dynamic-inputs" [formControlName]="question.field">
         <mat-radio-button
           *ngFor="let option of question.options; let i = index"
+          class="radio-option"
           color="primary"
           [value]="i"
+          [ngStyle]="{'flex-basis': 'calc(100% / '+question.options.length+')'}"
         >
           {{ option }}
         </mat-radio-button>
       </mat-radio-group>
 
-      <svg width="800" height="4" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <svg class="separator" width="800" height="4" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <line stroke-dasharray="10, 5" x1="0" y1="1" x2="800" y2="1" style="stroke-width: 2px;"></line>
       </svg>
     </div>
-  </form>
 
-  <form [formGroup]="investmentsTypesForm">
     <div class="item-container">
       <span class="question">
         {{ dynamicQuestions.length + 1 }} - Qual sua familiaridade com os tipos de investimentos abaixo?<br>
         Leve em consideração o valor aplicado nos últimos 2 anos.
       </span>
 
-      <div class="fixed-inputs">
-        <mat-form-field appearance="standard">
-          <mat-label>Títulos de renda fixa ou tesouro direto</mat-label>
-          <mat-select formControlName="rendaFixaTesouroDireto" required>
-            <mat-option>--</mat-option>
-            <mat-option value="animal">
-              teste
+      <div class="fixed-inputs" formGroupName="investmentsTypes">
+        <mat-form-field appearance="standard" *ngFor="let question of investmentsTypesQuestions">
+          <mat-label>{{ question.question }}</mat-label>
+          <mat-select (openedChange)="loadSelectOptions()" [formControlName]="question.field" >
+            <mat-option> {{ selectOptions ? '-' : 'Carregando...'}} </mat-option>
+            <mat-option *ngFor="let op of selectOptions; let i = index" [value]="i">
+              {{ op }}
             </mat-option>
           </mat-select>
-          <!-- <mat-error *ngIf="rendaFixaTesouroDireto.hasError('required')">Please choose an animal</mat-error> -->
-          <!-- <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
-        </mat-form-field>
-        
-        <mat-form-field appearance="standard">
-          <mat-label>Fundos de investimento</mat-label>
-          <mat-select formControlName="fundosInvestimentos" required>
-            <mat-option>--</mat-option>
-            <mat-option value="animal">
-              teste
-            </mat-option>
-          </mat-select>
-          <!-- <mat-error *ngIf="rendaFixaTesouroDireto.hasError('required')">Please choose an animal</mat-error> -->
-          <!-- <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
-        </mat-form-field>
-        
-        <mat-form-field appearance="standard">
-          <mat-label>Ações a vista</mat-label>
-          <mat-select formControlName="acoesAVista" required>
-            <mat-option>--</mat-option>
-            <mat-option value="animal">
-              teste
-            </mat-option>
-          </mat-select>
-          <!-- <mat-error *ngIf="rendaFixaTesouroDireto.hasError('required')">Please choose an animal</mat-error> -->
-          <!-- <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
-        </mat-form-field>
-        
-        <mat-form-field appearance="standard">
-          <mat-label>Aluguel de ações, Termos, Opções e futuros</mat-label>
-          <mat-select formControlName="aluguelAcoesTermosOpFuturos" required>
-            <mat-option>--</mat-option>
-            <mat-option value="animal">
-              teste
-            </mat-option>
-          </mat-select>
-          <!-- <mat-error *ngIf="rendaFixaTesouroDireto.hasError('required')">Please choose an animal</mat-error> -->
-          <!-- <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
         </mat-form-field>
       </div>
-        
-        <svg width="800" height="4" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <line stroke-dasharray="10, 5" x1="0" y1="1" x2="800" y2="1" style="stroke-width: 2px;"></line>
-        </svg>
-      </div>
-    </form>
+    </div>
 
-  <button
-  mat-stroked-button
-  color="primary"
-  (click)="showValues()"
-  >
-    Show Values
-  </button>
+    <div class="actions">
+      <button
+        mat-stroked-button
+        color="primary"
+        [routerLink]="['/']"
+      >
+        Voltar
+      </button>
+  
+      <button
+        mat-flat-button
+        color="accent"
+        [disabled]="questionaireForm.invalid"
+        (click)="submitForm()"
+      >
+        Salvar
+      </button>
+    </div>
+  </form>
+
+  <ng-template #loadContainer>
+    <div class="load-container">
+      <mat-spinner [diameter]="80"></mat-spinner>
+    </div>
+  </ng-template>
 </div>
+
+<ng-template #success>
+  <app-di-successful-registration>
+    <div class="resume">
+      <div class="dynamic-questions">
+        <div *ngFor="let question of dynamicQuestions" class="resume-question-container">
+          <span class="question-text">
+            {{ question.question }}
+          </span>
+          <span class="answer">
+            {{ getDynamicQuestionsAnswer(question.field) }}
+          </span>
+        </div>
+      </div>
+
+      <h3 class="fixed-question">Familiaridade com os tipos de investimentos:</h3>
+
+      <div class="fixed-questions">
+        <div class="resume-question-container" *ngFor="let question of investmentsTypesQuestions">
+          <span class="question-text">
+            {{ question.question }}
+          </span>
+          <span class="answer">
+            {{ getInvestmentsTypesAnswer(question.field) }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </app-di-successful-registration>
+</ng-template>

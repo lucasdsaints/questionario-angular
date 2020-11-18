@@ -26,6 +26,8 @@
     mat-flat-button
     color="accent"
     [disabled]="!accepted"
+    mat-dialog-close
+    (click)="confirm()"
   >
     Ok, Entendi
   </button>

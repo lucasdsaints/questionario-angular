@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProfileQuestionsService } from 'src/app/services/profile-questions.service';
+import { MatDialog } from '@angular/material/dialog';
+
+import { ProfileQuestioraireService } from 'src/app/services/profile-questionaire.service';
+import DynamicQuestion from 'src/app/models/DynamicQuestion';
 
 @Component({
   selector: 'app-profile-questionnaire',
@@ -8,39 +11,53 @@ import { ProfileQuestionsService } from 'src/app/services/profile-questions.serv
   styleUrls: ['./profile-questionnaire.component.scss']
 })
 export class ProfileQuestionnaireComponent implements OnInit {
-  public investmentsTypesForm: FormGroup;
-  public dynamicForm: FormGroup;
-  public dynamicQuestions: any;
-  private questionIndex = 0;
-
+  @ViewChild('success') successTemplateRef: TemplateRef<any>;
+  public questionaireForm: FormGroup;
+  public dynamicQuestions: DynamicQuestion[];
+  public selectOptions: string[];
+  public investmentsTypesQuestions = [
+    {
+      question: 'Títulos de renda fixa ou tesouro direto',
+      field: 'rendaFixaTesouroDireto'
+    },
+    {
+      question: 'Fundos de investimento',
+      field: 'fundosInvestimentos'
+    },
+    {
+      question: 'Ações a vista',
+      field: 'acoesAVista'
+    },
+    {
+      question: 'Aluguel de ações, Termos, Opções e futuros',
+      field: 'aluguelAcoesTermosOpFuturos'
+    },
+  ];
+  
   constructor(
-    private qService: ProfileQuestionsService,
-    private fb: FormBuilder
+    private qService: ProfileQuestioraireService,
+    private fb: FormBuilder,
+    private dialog: MatDialog
   ) { }
 
-  get questionNextIndex() {
-    return ++this.questionIndex;
-  }
-
   ngOnInit(): void {
-    this.generateDynamicQuestions();
-    this.generateInvestmentsTypesForm();
+    this.generateForm();
   }
 
-  generateDynamicQuestions() {
-    this.dynamicQuestions = this.qService.getQuestions();
+  async generateForm() {
+    this.dynamicQuestions = await this.qService.getQuestions();
     
     const dynamicQuestions = {};
     this.dynamicQuestions.forEach(question => {
-      console.log(question.field)
       dynamicQuestions[question.field] = [null, Validators.required]
     });
 
-    this.dynamicForm = this.fb.group(dynamicQuestions);
+    this.questionaireForm = this.fb.group(dynamicQuestions);
+    this.questionaireForm.addControl('investmentsTypes', this.getInvestmentsTypesForm());
   }
 
-  generateInvestmentsTypesForm() {
-    this.investmentsTypesForm = this.fb.group({
+  getInvestmentsTypesForm() {
+    return this.fb.group({
       rendaFixaTesouroDireto: [null, Validators.required],
       fundosInvestimentos: [null, Validators.required],
       acoesAVista: [null, Validators.required],
@@ -48,9 +65,30 @@ export class ProfileQuestionnaireComponent implements OnInit {
     });
   }
 
-  showValues() {
-    console.log(this.investmentsTypesForm.value)
-    console.log(this.dynamicForm.value)
+  async loadSelectOptions() {
+    if (this.selectOptions) {
+      return;
+    }
+
+    this.selectOptions = await this.qService.getSelecOptions();
   }
 
+  submitForm() {
+    this.dialog.open(this.successTemplateRef, {
+      disableClose: true
+    });
+  }
+
+  getDynamicQuestionsAnswer(controlName: string) {
+    const answerOptionIndex = this.questionaireForm.value[controlName];
+    const questionData = this.dynamicQuestions.find(q => q.field === controlName);
+
+    return questionData.options[answerOptionIndex];
+  }
+
+  getInvestmentsTypesAnswer(controlName: string) {
+    const formGroupValue = this.questionaireForm.value['investmentsTypes'];
+    const answerOptionIndex = formGroupValue[controlName];
+    return this.selectOptions[answerOptionIndex];
+  }
 }
