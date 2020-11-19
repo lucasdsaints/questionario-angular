@@ -1,18 +1,16 @@
-# Questionrio Angular
+# Questionário Angular
 
-Projeto desenvolvido em Angular na versão 11 e Angular Material.
-
-A intenção deste projeto é praticar conceitos relacionados à criação de páginas formulário em Angular 2+.
+A intenção deste projeto foi praticar conceitos relacionados à criação de páginas formulário em Angular 2+.
 
 ## Executando a aplicação
 
-Após a instalação das dependências com o comando `npm install `, executar o comando `npm start`.
+Após a instalação das dependências com o comando `npm install`, executar o comando `npm start`.
 
 ## Requisições na aplicação
 
 Os dados buscados na aplicação são definidos no arquivo `db.json` e são providos utilizando a ferramenta [My JSON Server](https://my-json-server.typicode.com/).
 
-## Prints
+## Screenshots
 
 <img src="https://user-images.githubusercontent.com/38575761/99602700-b5890100-29e0-11eb-92d8-8e118ff9edd2.png" alt="Screenshot_20201118_205728"/>
 
