@@ -1,27 +1,24 @@
-# QuestionarioAngular
+# Questionrio Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
+Projeto desenvolvido em Angular na versão 11 e Angular Material.
 
-## Development server
+A intenção deste projeto é praticar conceitos relacionados à criação de páginas formulário em Angular 2+.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Executando a aplicação
 
-## Code scaffolding
+Após a instalação das dependências com o comando `npm install `, executar o comando `npm start`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Requisições na aplicação
 
-## Build
+Os dados buscados na aplicação são definidos no arquivo `db.json` e são providos utilizando a ferramenta [My JSON Server](https://my-json-server.typicode.com/).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Prints
 
-## Running unit tests
+<img src="https://user-images.githubusercontent.com/38575761/99602700-b5890100-29e0-11eb-92d8-8e118ff9edd2.png" alt="Screenshot_20201118_205728"/>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<img src="https://user-images.githubusercontent.com/38575761/99602205-d7ce4f00-29df-11eb-94d8-7d4692781209.png" alt="Screenshot_20201118_205047"/>
 
-## Running end-to-end tests
+<img src="https://user-images.githubusercontent.com/38575761/99602200-d69d2200-29df-11eb-8756-f099ae10cfc2.png" alt="Screenshot_20201118_205026" />
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+<img src="https://user-images.githubusercontent.com/38575761/99602195-d43ac800-29df-11eb-83ae-965a72f71e97.png" alt="Screenshot_20201118_204910"/>
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
